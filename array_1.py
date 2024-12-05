@@ -1,4 +1,4 @@
-#1D array
+#1D array (Just warming up)
 arr = [1,2,3,4,5,6,7,8,9,10]
 
 #Accessing array: Usage of index O(1)
