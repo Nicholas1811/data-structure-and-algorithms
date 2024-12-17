@@ -23,8 +23,8 @@ class LinkedList:
             self.head = new_node
             return
         else:
-            new_node.next = self.head  #Setting the next value to the second value
-            self.head = new_node
+            new_node.next = self.head  #Setting the next value of the new node to the self.head
+            self.head = new_node #Setting the head value as the new node.
 
 
     #Adding at the back is slightly more complicated
@@ -37,36 +37,64 @@ class LinkedList:
             self.head = new_node
         else:
             current = self.head
+            #While there is current.next value, what it does is it transverse the entire LinkedList
+            #Until it reaches the last node, in which it will just set the current.next value to the new node.
             while current.next:
                 current = current.next
+                #at the last one, it adds a new node.
             current.next = new_node
+            new_node.next = None
     
     #Adding by specific key is similar as well.
-    #Takes in the value, and we can add a counter
-
+    #at specific index
     def add_by_key(self,data,key):
         new_node = Node(data)
-        if self.head == None:
-            self.head = new_node
-        else:
-            current = self.head
-            count = 1 #Tracking of index
-            while current:
-                current = current.next
-                count+=1
-                if count == key:
+        count = 0
+        current = self.head
+        while current.next:
+            count += 1
+            if count == key:
+                new_node.next = current.next        
+                current.next = new_node
+            current = current.next
 
+    def delete_front(self):
+        current = self.head
+        self.head = current.next
+
+    def delete_back(self):
+        current = self.head
+        while current.next:
+            current = current.next
+            if current.next.next == None:
+                current.next = None
+                break
+    
+    def delete_at_key(self,key):
+        count = 0
+        current = self.head
+        while current.next:
+            count += 1
+            current = current.next
+            if key == count:
+                current.next = current.next.next
+        
     def print_linked_list(self):
         current = self.head #Setting of self.head to current variable. self.head should be the first element of the LinkedList.
         while current: #While the variable current is not empty, it will print the current.data first and then, sets the current value to current.next
             print(current.data, end=" -> ")
             current = current.next
-        print("None")
         
 
 new_ll = LinkedList()
-new_ll.add_new_front(10)
-new_ll.add_new_front(20)
-new_ll.add_new_front(30)
-new_ll.add_new_back(100)
+new_ll.add_new_front(2)
+new_ll.add_new_front(3)
+new_ll.add_new_front(4)
+new_ll.add_by_key(5,1)
+new_ll.add_new_back(6)
+new_ll.add_new_back(7)
+new_ll.add_new_back(8)
+new_ll.delete_front()
+new_ll.delete_back()
+new_ll.delete_at_key(1)
 new_ll.print_linked_list()
