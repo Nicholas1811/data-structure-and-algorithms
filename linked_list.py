@@ -72,13 +72,13 @@ class LinkedList:
     
     def delete_at_key(self,key):
         count = 0
+        previous_key = key-1
         current = self.head
-        while current.next:
-            count += 1
-            current = current.next
-            if key == count:
+        while current:
+            if count == previous_key:
                 current.next = current.next.next
-        
+            current = current.next
+            count += 1
     def print_linked_list(self):
         current = self.head #Setting of self.head to current variable. self.head should be the first element of the LinkedList.
         while current: #While the variable current is not empty, it will print the current.data first and then, sets the current value to current.next
@@ -96,5 +96,5 @@ new_ll.add_new_back(7)
 new_ll.add_new_back(8)
 new_ll.delete_front()
 new_ll.delete_back()
-new_ll.delete_at_key(1)
+new_ll.delete_at_key(2)
 new_ll.print_linked_list()
