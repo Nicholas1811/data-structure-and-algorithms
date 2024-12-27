@@ -83,10 +83,33 @@ class BinarySearchTree:
             parent.right == None
 
     #Delete for nodes with two children.
+    #2 ways to do so: Replace with the predecessor or successor.
+    #If node is = 80, 70 can be used or 90.
+
 
     def delete_top(self,del_key):
         current = self.root
-        if current.left and current.right:
+        parent = None
+        while current and current.data != del_key:
+            parent = current
+            if del_key < current.data:
+                current = current.left
+            elif del_key > current.data:
+                current = current.right
+        #if current.left and current.right:
+
+    
+    def inorder(self,root = None):
+        result = []
+        stack = []
+        current = self.root
+
+        while stack or current:
+            while current:
+                stack.append(current)
+                
+        
+
             
 
 
@@ -105,6 +128,7 @@ bst.insert(80)
 bst.search(50)
 bst.delete(80)
 bst.delete(70) #Deleting single child.
+bst.inorder()
 
 
 
